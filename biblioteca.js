@@ -1,4 +1,3 @@
-// Sistema básico de biblioteca - Versión corregida
 class Libro {
     constructor(titulo, autor, año) {
         this.titulo = titulo;
@@ -7,27 +6,24 @@ class Libro {
         this.prestado = false;
     }
     
-    // Corregido: Método con nombre correcto
     obtenerDetalles() {
         return `${this.titulo} por ${this.autor} (${this.año})`;
     }
     
-    // Corregido: Comparación correcta con == en lugar de asignación =
     prestar() {
-        if (this.prestado === true) {  // Corregido: === para comparación exacta
+        if (this.prestado === true) { 
             return "El libro ya está prestado";
         }
         this.prestado = true;
         return "Libro prestado exitosamente";
     }
     
-    // Corregido: Return consistente en todos los casos
     devolver() {
         if (this.prestado) {
             this.prestado = false;
             return "Libro devuelto";
         }
-        return "El libro no estaba prestado"; // Corregido: agregado return
+        return "El libro no estaba prestado"; 
     }
 }
 
@@ -36,14 +32,12 @@ class Biblioteca {
         this.libros = [];
     }
     
-    // Corregido: Usar el parámetro correcto
     agregarLibro(nuevoLibro) {
-        this.libros.push(nuevoLibro);  // Corregido: usar 'nuevoLibro'
+        this.libros.push(nuevoLibro); 
     }
     
-    // Corregido: Condición de bucle correcta para evitar index out of bounds
     buscarLibro(titulo) {
-        for (let i = 0; i < this.libros.length; i++) {  // Corregido: < en lugar de <=
+        for (let i = 0; i < this.libros.length; i++) { 
             if (this.libros[i].titulo === titulo) {
                 return this.libros[i];
             }
@@ -56,24 +50,20 @@ class Biblioteca {
         return this.libros.find(libro => libro.titulo === titulo) || null;
     }
     
-    // Corregido: Sintaxis correcta y nombre de método correcto
     listarLibros() {
         this.libros.forEach(libro => {
-            console.log(libro.obtenerDetalles());  // Corregido: nombre correcto del método
-        });  // Corregido: ); en lugar de };
+            console.log(libro.obtenerDetalles());
+        });
     }
     
-    // Método adicional: Obtener libros prestados
     obtenerLibrosPrestados() {
         return this.libros.filter(libro => libro.prestado);
     }
     
-    // Método adicional: Obtener libros disponibles
     obtenerLibrosDisponibles() {
         return this.libros.filter(libro => !libro.prestado);
     }
     
-    // Método adicional: Contar total de libros
     contarLibros() {
         return this.libros.length;
     }
@@ -97,8 +87,8 @@ console.log("\n=== LISTANDO TODOS LOS LIBROS ===");
 biblioteca.listarLibros();
 
 console.log("\n=== PROBANDO PRÉSTAMO DE LIBROS ===");
-console.log(libro1.prestar()); // Primera vez
-console.log(libro1.prestar()); // Segunda vez (debería decir que ya está prestado)
+console.log(libro1.prestar()); 
+console.log(libro1.prestar());
 
 console.log("\n=== LIBROS PRESTADOS ===");
 const librosPrestados = biblioteca.obtenerLibrosPrestados();
@@ -122,7 +112,7 @@ if (libroEncontrado) {
 
 console.log("\n=== DEVOLVIENDO LIBRO ===");
 console.log(libro1.devolver());
-console.log(libro1.devolver()); // Segunda vez (no estaba prestado)
+console.log(libro1.devolver());
 
 console.log("\n=== ESTADO FINAL ===");
 console.log(`Libros prestados: ${biblioteca.obtenerLibrosPrestados().length}`);
